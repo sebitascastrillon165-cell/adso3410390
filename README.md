@@ -5,7 +5,7 @@
 ** Centro de Procesos Industriales y de Construcción **
 > SENA - Regional Caldas 
 ---
-1- Layout
-2- JavaScript
+1. Layout
+2. JavaScript
 
 Repository ADSO 3410390
