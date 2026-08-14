@@ -105,7 +105,12 @@ body {
                         font-size: 1.6rem;
                         font-weight: 400;
                     }
-                }
+                    small {
+                        color: #fff9;
+                        font-size: 0.8rem;
+                        font-weight: 300;
+                    }
+            }    }
         }
     }
 }
