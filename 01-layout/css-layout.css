@@ -11,9 +11,63 @@ body {
     min-height: 100dvh;
     align-items: center;
 
+  nav.back {
+        align-items: center;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        height: 40px;
+        left: 8px;
+        opacity: .6;
+        padding: 0.4rem;
+        position: fixed;
+        top: 8px;
+        transform: scale(.8);
+        transition: all 0.4s ease-in;
+        width: 40px;
+        &:hover {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+    }
+    
+    &.mainmenu.layout {
+      background: linear-gradient(45deg, rgb(58, 40, 199), rgb(0, 0, 0));
+      main{
+        header{
+          h1{
+            margin: 0;
+          }
+          h3{
+            font-weight: 200;
+          }
+          img{
+            background-color: #0003;
+          }
+        }
+        menu{
+          gap: 0.4rem;
+          a:is(:link, :visited){
+            span{
+              background-color: rgb(19, 73, 149);
+            }
+            aside{
+              h3{
+                font-size: 1rem;
+              }
+            }
+            &:is(:hover){
+              background-color: rgb(83, 108, 192);
+            }
+          }
+        }
+      }
+    }
+
     main{
-        background: linear-gradient(to bottom, #0009, #0000);
-        border-radius: 0.4rem;
+        background: linear-gradient(to bottom, #0009, #021c7154);
+        border-radius: 6rem;
         padding: 1rem;
         min-width: 380px;
     }

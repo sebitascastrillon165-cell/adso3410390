@@ -11,6 +11,27 @@ body {
     min-height: 100dvh;
     align-items: center;
 
+    nav.back {
+    alinear-ítems: centro;
+    borde: 2px sólido #fff;
+    Radio de frontera: 50%;
+    pantalla: flex;
+    justificar-contenido: centro;
+    Altura: 40px;
+    izquierda: 8px;
+    opacidad: 0,6;
+    Relleno: 0,4REM;
+    posición: fija;
+    arriba: 8px;
+    transformar: escama (0,8);
+    transición: todos los 0.4s de entrada con facilidad;
+    Ancho: 40px;
+    &:hover {
+    transformar: escala(1.1);
+    opacidad: 1;
+        }
+    }
+
     main{
         background: linear-gradient(to bottom, #0009, #0000);
         border-radius: 0.4rem;
