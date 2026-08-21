@@ -87,7 +87,6 @@ body {
         background-color: #000c;
         transform: scale(1.04) translateX(18px);
         }
-}
                 span {
                     background-color: grey; 
                     border-radius: 50%;
@@ -99,7 +98,7 @@ body {
                     width: 60px;
                 }
                 &:hover span {
-                    background-color: #0009;
+                    background-color: rgba(0, 0, 0, 0.6);
                 }
                 aside {
                     margin-left: 0.6rem;
