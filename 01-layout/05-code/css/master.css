@@ -1,0 +1,85 @@
+/* Variables */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+:root {
+  --color-one: #8E0C22;
+  --color-two: #F0B355;
+  --color-three: #0C0D0F;
+  --color-claro: #F2F2F4;
+  scroll-behavior: smooth;
+  --font-headings: "Playfair Display", serif;
+  --font-body: "Montserrat", sans-serif;
+}
+body{
+  color: var(--color-two);
+  background-color: var(--color-three);
+
+  main {
+    min-height: 100dvh;
+
+    header#navbar{
+      align-items: center;
+      background-color: var(--color-three);
+      border-bottom: 1px solid var(--color-two);
+      display: flex;
+      left: 0;
+      height: 110px;
+      justify-content: space-between;
+      padding-inline: 1.4rem;
+      position: fixed;
+      top: 0;
+      width: 100%;
+
+
+      img.logo {
+        height: 95px;
+      }
+
+      nav.options{
+        display: flex;
+        gap: 3rem;
+        a:is(:link, :visited){
+          font-size: 1.3rem;
+          font-weight: 500;
+          text-decoration: none;
+          transition: transform 0.4s ease-in;
+          &:not(.active):hover {
+            transform: translateY(-5px);
+          }
+          &.active {
+            border-bottom: 2px solid var(--color-two);
+            color: var(--color-two);
+          }
+        }
+      }
+    }
+    section#cineplaza {
+      align-items: center;
+      background: url(../images/fondo1.png) no-repeat center /cover;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 110px;
+      height: 760px;
+
+      h2{
+        font-size: 3.6rem;
+        font-family: var(--font-headings);
+        text-transform: uppercase;
+      }
+      p{
+        color: var(--color-claro);
+        font-size: 1.2rem;
+        &:first-of-type{
+          margin-top: -1.4rem;
+        }
+      }
+      img.logo{
+        height: 300px;
+      }
+    }
+  }
+}
