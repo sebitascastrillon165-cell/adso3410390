@@ -15,10 +15,10 @@
 body{
   color: var(--color-two);
   background-color: var(--color-three);
-
+  
   main {
     min-height: 100dvh;
-
+    
     header#navbar{
       align-items: center;
       background-color: var(--color-three);
@@ -31,12 +31,12 @@ body{
       position: fixed;
       top: 0;
       width: 100%;
-
-
+      
+      
       img.logo {
         height: 95px;
       }
-
+      
       nav.options{
         display: flex;
         gap: 3rem;
@@ -64,7 +64,7 @@ body{
       justify-content: center;
       margin-top: 110px;
       height: 760px;
-
+      
       h2{
         font-size: 3.6rem;
         font-family: var(--font-headings);
@@ -80,6 +80,98 @@ body{
       img.logo{
         height: 300px;
       }
+    }
+    section#Cartelera { 
+      align-items: center;
+      background: url(../images/fondo2.png) no-repeat center /cover;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      height: 950px;
+      justify-content: center;
+      
+      h2{
+        font-size: 3.6rem;
+        font-family: var(--font-headings);
+        text-transform: uppercase;
+      }
+      div.filters {
+        display: flex;
+        gap: 4rem;
+        
+        button {
+          font-family: var(--font-headings);
+          height: 45px;
+          font-size: 1.8rem;
+          width: 400px;
+          background-color: #0C0D0F;
+          border: 2px solid transparent; /* Espacio para que el borde no mueva el diseño al aparecer */
+          border-radius: 12px;
+          cursor: pointer;
+          /* Transición suave para todos los cambios */
+          transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease, border-color 0.25s ease;
+        }
+        
+        /* Efecto al pasar el cursor (hover) en CUALQUIER botón */
+        button:hover {
+          transform: translateY(-3px) scale(1.01);
+          box-shadow: 0 6px 20px rgba(240, 179, 85, 0.35);
+          filter: brightness(1.25);
+          border-color: #F0B355;
+        }
+        
+        /* Estado activo para el botón seleccionado */
+        button.active {
+          border-color: #F0B355;
+          filter: brightness(1.25);
+          transform: translateY(-3px) scale(1.01);
+          box-shadow: 0 6px 20px rgba(240, 179, 85, 0.35);
+        }
+      }
+    }
+  }
+}
+div.cards {
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+  figure.card {
+    background-color: #0C0D0F;
+    border:1px solid #F0B355;
+    color: var(--color-claro);
+    font-family: var(--font-body);
+    height: 570px;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+    width: 350px;
+    
+    button.ComprarEntrada {
+      background-color: var(--color-one);
+      border-radius: 2rem;
+      border-color: #F0B355;
+      cursor: pointer;
+      display: block;
+      font-family: var(--font-headings);
+      height: 40px;
+      margin: 2rem auto 2rem auto;
+      /* Código de animación y transición */
+      transition: transform 0.55s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      width: 200px;
+    }
+    button.ComprarEntrada:hover {
+      border-color: #ffd27a;
+      box-shadow: 0 6px 20px rgba(240, 179, 85, 0.35);
+      transform: translateY(-3px) scale(1.11);
+    }
+    
+    img.peliculas {
+      border-radius: 8px;
+      border:1px solid  #F0B355;
+      display: block;
+      height: 300px;
+      margin: 0 auto 1rem auto;
+      
     }
   }
 }
