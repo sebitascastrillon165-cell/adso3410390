@@ -31,6 +31,7 @@ body{
       position: fixed;
       top: 0;
       width: 100%;
+      z-index: 9999;
       
       
       img.logo {
@@ -173,5 +174,102 @@ div.cards {
       margin: 0 auto 1rem auto;
       
     }
+  }
+}
+section#actores { 
+  align-items: center;
+  background: url(../images/fondo3.png) no-repeat center top /cover;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  height: 950px;
+  justify-content: center;
+  
+  h2{
+    font-size: 3.6rem;
+    font-family: var(--font-headings);
+    text-transform: uppercase;
+    margin: 12rem auto auto auto;
+  }
+  div.actorcards {
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+    margin: 4rem auto 4rem auto ;
+    figure.actors {
+      background-color: #0c0d0f78;
+      border:1px solid #F0B355;
+      color: var(--color-claro);
+      font-family: var(--font-body);
+      height: 470px;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+      width: 350px;
+    }
+    img.actores {
+      border-radius: 8px;
+      border:1px solid  #F0B355;
+      display: block;
+      height: 250px;
+      margin: 0 auto 1rem auto;
+    }
+  }
+}
+.btn-carrusel {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid rgb(182, 131, 12);
+  font-size: 2rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+  align-self: center;
+  background-color: var(--color-card);
+  color: var(--white-color);
+}
+
+.btn-carrusel:hover {
+  background-color: var(--color-two);
+  box-shadow: 0 0 15px rgba(188, 4, 4, 0.3);
+  transform: scale(1.08);
+  background-color: #f0b25566;
+  border-color: #F0B355;
+  
+}
+section#ubicacion{
+  align-items: center;
+  background: url(../images/fondo4.png) no-repeat center top /cover;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  height: 950px;
+  justify-content: center;
+
+  h2{
+    font-size: 3.6rem;
+    font-family: var(--font-headings);
+    text-transform: uppercase;
+  }
+  img.mapa {
+    width: 800px;
+  }
+}
+section#final {
+  align-items: center;
+  background: url(../images/fondo5.png) no-repeat center /cover;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  height: 950px;
+  justify-content: center;
+
+  img.creditos {
+    width: 500px;
+  }
+  img.redes {
+    width: 300px;
   }
 }
