@@ -12,18 +12,20 @@
   --font-headings: "Playfair Display", serif;
   --font-body: "Montserrat", sans-serif;
 }
+
 html {
   /* Zoom automático inicial al 75% */
   zoom: 0.75;
 }
-body{
+
+body {
   color: var(--color-two);
   background-color: var(--color-three);
-  
+
   main {
     min-height: 100dvh;
-    
-    header#navbar{
+
+    header#navbar {
       align-items: center;
       background-color: var(--color-three);
       border-bottom: 1px solid var(--color-two);
@@ -36,30 +38,93 @@ body{
       top: 0;
       width: 100%;
       z-index: 9999;
-      
-      
+
+
       img.logo {
         height: 95px;
       }
-      
-      nav.options{
+
+      nav.options {
         display: flex;
         gap: 3rem;
-        a:is(:link, :visited){
+
+        a:is(:link, :visited) {
           font-size: 1.3rem;
           font-weight: 500;
           text-decoration: none;
           transition: transform 0.4s ease-in;
+
           &:not(.active):hover {
             transform: translateY(-5px);
           }
+
           &.active {
             border-bottom: 2px solid var(--color-two);
             color: var(--color-two);
           }
         }
       }
+
+      button#mburger {
+        display: none;
+        position: relative;
+        width: 50px;
+        height: 44px;
+        background: none;
+        border: none;
+        appearance: none;
+        transform: scale(.8);
+        cursor: pointer;
+
+        &:focus:not(:focus-visible) {
+          outline: none;
+        }
+
+        span {
+          position: absolute;
+          width: 100%;
+          height: 4px;
+          background: #F0B355;
+          border-radius: 3px;
+
+          &:nth-of-type(1) {
+            top: 0;
+            left: 0;
+            transition: top .3s;
+          }
+
+          &:nth-of-type(2) {
+            top: 20px;
+            left: 0;
+            transition: opacity .3s;
+          }
+
+          &:nth-of-type(3) {
+            bottom: 0;
+            left: 0;
+            transition: bottom .3s;
+          }
+        }
+
+        &.active span:nth-of-type(1) {
+          top: 20px;
+          transform: rotate(-45deg);
+          transition: top .3s cubic-bezier(.36, -.42, .68, -.56), transform .3s .3s;
+        }
+
+        &.active span:nth-of-type(2) {
+          opacity: 0;
+          transition: opacity .05s .3s;
+        }
+
+        &.active span:nth-of-type(3) {
+          bottom: 20px;
+          transform: rotate(45deg);
+          transition: bottom .3s cubic-bezier(.36, -.42, .68, -.56), transform .3s .3s;
+        }
+      }
     }
+
     section#cineplaza {
       align-items: center;
       background: url(../images/fondo1.png) no-repeat center /cover;
@@ -69,24 +134,28 @@ body{
       justify-content: center;
       margin-top: 110px;
       height: 760px;
-      
-      h2{
+
+      h2 {
         font-size: 3.6rem;
         font-family: var(--font-headings);
         text-transform: uppercase;
       }
-      p{
+
+      p {
         color: var(--color-claro);
         font-size: 1.2rem;
-        &:first-of-type{
+
+        &:first-of-type {
           margin-top: -1.4rem;
         }
       }
-      img.logo{
+
+      img.logo {
         height: 300px;
       }
     }
-    section#Cartelera { 
+
+    section#Cartelera {
       align-items: center;
       background: url(../images/fondo2.png) no-repeat center /cover;
       display: flex;
@@ -94,29 +163,31 @@ body{
       gap: 2rem;
       height: 950px;
       justify-content: center;
-      
-      h2{
+
+      h2 {
         font-size: 3.6rem;
         font-family: var(--font-headings);
         text-transform: uppercase;
       }
+
       div.filters {
         display: flex;
         gap: 4rem;
-        
+
         button {
           font-family: var(--font-headings);
           height: 45px;
           font-size: 1.8rem;
           width: 400px;
           background-color: #0C0D0F;
-          border: 2px solid transparent; /* Espacio para que el borde no mueva el diseño al aparecer */
+          border: 2px solid transparent;
+          /* Espacio para que el borde no mueva el diseño al aparecer */
           border-radius: 12px;
           cursor: pointer;
           /* Transición suave para todos los cambios */
           transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease, border-color 0.25s ease;
         }
-        
+
         /* Efecto al pasar el cursor (hover) en CUALQUIER botón */
         button:hover {
           transform: translateY(-3px) scale(1.01);
@@ -124,7 +195,7 @@ body{
           filter: brightness(1.25);
           border-color: #F0B355;
         }
-        
+
         /* Estado activo para el botón seleccionado */
         button.active {
           border-color: #F0B355;
@@ -136,13 +207,15 @@ body{
     }
   }
 }
+
 div.cards {
   display: flex;
   gap: 2rem;
   justify-content: space-between;
+
   figure.card {
     background-color: #0C0D0F;
-    border:1px solid #F0B355;
+    border: 1px solid #F0B355;
     color: var(--color-claro);
     font-family: var(--font-body);
     height: 570px;
@@ -150,7 +223,7 @@ div.cards {
     padding: 2rem;
     position: relative;
     width: 350px;
-    
+
     button.ComprarEntrada {
       background-color: var(--color-one);
       border-radius: 2rem;
@@ -164,23 +237,25 @@ div.cards {
       transition: transform 0.55s ease, box-shadow 0.25s ease, border-color 0.25s ease;
       width: 200px;
     }
+
     button.ComprarEntrada:hover {
       border-color: #ffd27a;
       box-shadow: 0 6px 20px rgba(240, 179, 85, 0.35);
       transform: translateY(-3px) scale(1.11);
     }
-    
+
     img.peliculas {
       border-radius: 8px;
-      border:1px solid  #F0B355;
+      border: 1px solid #F0B355;
       display: block;
       height: 300px;
       margin: 0 auto 1rem auto;
-      
+
     }
   }
 }
-section#actores { 
+
+section#actores {
   align-items: center;
   background: url(../images/fondo3.png) no-repeat center top /cover;
   display: flex;
@@ -188,21 +263,23 @@ section#actores {
   gap: 2rem;
   height: 950px;
   justify-content: center;
-  
-  h2{
+
+  h2 {
     font-size: 3.6rem;
     font-family: var(--font-headings);
     text-transform: uppercase;
     margin: 12rem auto auto auto;
   }
+
   div.actorcards {
     display: flex;
     gap: 2rem;
     justify-content: space-between;
-    margin: 4rem auto 4rem auto ;
+    margin: 4rem auto 4rem auto;
+
     figure.actors {
       background-color: #0c0d0f78;
-      border:1px solid #F0B355;
+      border: 1px solid #F0B355;
       color: var(--color-claro);
       font-family: var(--font-body);
       height: 470px;
@@ -211,15 +288,17 @@ section#actores {
       position: relative;
       width: 350px;
     }
+
     img.actores {
       border-radius: 8px;
-      border:1px solid  #F0B355;
+      border: 1px solid #F0B355;
       display: block;
       height: 250px;
       margin: 0 auto 1rem auto;
     }
   }
 }
+
 .btn-carrusel {
   flex-shrink: 0;
   width: 60px;
@@ -241,9 +320,10 @@ section#actores {
   transform: scale(1.08);
   background-color: #f0b25566;
   border-color: #F0B355;
-  
+
 }
-section#ubicacion{
+
+section#ubicacion {
   align-items: center;
   background: url(../images/fondo4.png) no-repeat center top /cover;
   display: flex;
@@ -252,15 +332,17 @@ section#ubicacion{
   height: 950px;
   justify-content: center;
 
-  h2{
+  h2 {
     font-size: 3.6rem;
     font-family: var(--font-headings);
     text-transform: uppercase;
   }
+
   img.mapa {
     width: 800px;
   }
 }
+
 section#final {
   align-items: center;
   background: url(../images/fondo5.png) no-repeat center /cover;
@@ -273,7 +355,40 @@ section#final {
   img.creditos {
     width: 500px;
   }
+
   img.redes {
     width: 300px;
+  }
+
+  body {
+    background-color: teal;
+  }
+}
+
+@media (max-width: 560px) {
+  body {
+    main {
+      header#navbar {
+        nav.options {
+          background-color: #000d;
+          position:absolute;
+          width: 100%;
+          align-items: center;
+          justify-content: start;
+          flex-direction: column;
+          padding-top: 2rem;
+          height: 100dvh;
+          top: 110px;
+          left: -130dvw;
+          transition: all 1s 0.5s ease;
+          &.active{
+            left: 0px;
+          }
+        }
+        button#mburger {
+          display: block;
+        }
+      }
+    }
   }
 }
