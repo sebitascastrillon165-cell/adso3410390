@@ -12,6 +12,10 @@
   --font-headings: "Playfair Display", serif;
   --font-body: "Montserrat", sans-serif;
 }
+html {
+  /* Zoom automático inicial al 75% */
+  zoom: 0.75;
+}
 body{
   color: var(--color-two);
   background-color: var(--color-three);
