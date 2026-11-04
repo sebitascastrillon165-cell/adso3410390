@@ -1,6 +1,5 @@
 /* Variables */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
-
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
 :root {
@@ -13,9 +12,18 @@
   --font-body: "Montserrat", sans-serif;
 }
 
-html {
-  /* Zoom automático inicial al 75% */
-  zoom: 0.75;
+/* ==========================================
+   RESET GLOBAL PARA RESPONSIVE
+   ========================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 body {
@@ -38,7 +46,6 @@ body {
       top: 0;
       width: 100%;
       z-index: 9999;
-
 
       img.logo {
         height: 95px;
@@ -87,23 +94,9 @@ body {
           background: #F0B355;
           border-radius: 3px;
 
-          &:nth-of-type(1) {
-            top: 0;
-            left: 0;
-            transition: top .3s;
-          }
-
-          &:nth-of-type(2) {
-            top: 20px;
-            left: 0;
-            transition: opacity .3s;
-          }
-
-          &:nth-of-type(3) {
-            bottom: 0;
-            left: 0;
-            transition: bottom .3s;
-          }
+          &:nth-of-type(1) { top: 0; left: 0; transition: top .3s; }
+          &:nth-of-type(2) { top: 20px; left: 0; transition: opacity .3s; }
+          &:nth-of-type(3) { bottom: 0; left: 0; transition: bottom .3s; }
         }
 
         &.active span:nth-of-type(1) {
@@ -133,7 +126,8 @@ body {
       gap: 2rem;
       justify-content: center;
       margin-top: 110px;
-      height: 760px;
+      min-height: 760px;
+      padding: 3rem 1.5rem;
 
       h2 {
         font-size: 3.6rem;
@@ -144,25 +138,21 @@ body {
       p {
         color: var(--color-claro);
         font-size: 1.2rem;
-
-        &:first-of-type {
-          margin-top: -1.4rem;
-        }
+        &:first-of-type { margin-top: -1.4rem; }
       }
 
-      img.logo {
-        height: 300px;
-      }
+      img.logo { height: 300px; }
     }
 
-    section#Cartelera {
+    section#cartelera {
       align-items: center;
       background: url(../images/fondo2.png) no-repeat center /cover;
       display: flex;
       flex-direction: column;
       gap: 2rem;
-      height: 950px;
+      min-height: 950px;
       justify-content: center;
+      padding: 3rem 1rem;
 
       h2 {
         font-size: 3.6rem;
@@ -173,6 +163,8 @@ body {
       div.filters {
         display: flex;
         gap: 4rem;
+        flex-wrap: wrap;
+        justify-content: center;
 
         button {
           font-family: var(--font-headings);
@@ -181,14 +173,11 @@ body {
           width: 400px;
           background-color: #0C0D0F;
           border: 2px solid transparent;
-          /* Espacio para que el borde no mueva el diseño al aparecer */
           border-radius: 12px;
           cursor: pointer;
-          /* Transición suave para todos los cambios */
           transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease, border-color 0.25s ease;
         }
 
-        /* Efecto al pasar el cursor (hover) en CUALQUIER botón */
         button:hover {
           transform: translateY(-3px) scale(1.01);
           box-shadow: 0 6px 20px rgba(240, 179, 85, 0.35);
@@ -196,7 +185,6 @@ body {
           border-color: #F0B355;
         }
 
-        /* Estado activo para el botón seleccionado */
         button.active {
           border-color: #F0B355;
           filter: brightness(1.25);
@@ -208,21 +196,53 @@ body {
   }
 }
 
-div.cards {
+/* ==========================================
+   ESTRUCTURA DE LOS CARUSELES
+   ========================================== */
+
+.carousel-container {
+  position: relative;
+  max-width: 1300px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 0 70px;
+  box-sizing: border-box;
+}
+
+.carousel {
   display: flex;
   gap: 2rem;
-  justify-content: space-between;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding: 10px 0;
+}
 
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+/* ==========================================
+   TARJETAS DE CARTELERA (PELÍCULAS)
+   ========================================== */
+div.cards {
   figure.card {
+    flex: 0 0 350px;
+    width: 350px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
     background-color: #0C0D0F;
     border: 1px solid #F0B355;
     color: var(--color-claro);
     font-family: var(--font-body);
     height: 570px;
-    justify-content: center;
     padding: 2rem;
     position: relative;
-    width: 350px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra el contenido de la tarjeta */
 
     button.ComprarEntrada {
       background-color: var(--color-one);
@@ -232,8 +252,7 @@ div.cards {
       display: block;
       font-family: var(--font-headings);
       height: 40px;
-      margin: 2rem auto 2rem auto;
-      /* Código de animación y transición */
+      margin: auto auto 0 auto; /* Empuja el botón al fondo de la tarjeta */
       transition: transform 0.55s ease, box-shadow 0.25s ease, border-color 0.25s ease;
       width: 200px;
     }
@@ -244,93 +263,115 @@ div.cards {
       transform: translateY(-3px) scale(1.11);
     }
 
+    /* CORRECCIÓN DE IMAGEN DE PELÍCULA: Proporción de póster sin deformar */
     img.peliculas {
       border-radius: 8px;
       border: 1px solid #F0B355;
       display: block;
-      height: 300px;
-      margin: 0 auto 1rem auto;
-
+      width: 100%;
+      max-width: 220px; /* Evita que se estire demasiado */
+      height: 300px; /* Mantiene una altura considerable */
+      margin: 0 auto 1.5rem auto;
+      object-fit: cover; /* Recorta los bordes si sobra, sin deformar */
+      object-position: center; 
     }
   }
 }
 
+/* ==========================================
+   TARJETAS DE ACTORES
+   ========================================== */
 section#actores {
   align-items: center;
   background: url(../images/fondo3.png) no-repeat center top /cover;
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  height: 950px;
+  min-height: 950px;
   justify-content: center;
+  padding: 3rem 1rem;
 
   h2 {
     font-size: 3.6rem;
     font-family: var(--font-headings);
     text-transform: uppercase;
-    margin: 12rem auto auto auto;
+    margin: 4rem auto 0 auto;
   }
 
   div.actorcards {
-    display: flex;
-    gap: 2rem;
-    justify-content: space-between;
-    margin: 4rem auto 4rem auto;
-
     figure.actors {
+      flex: 0 0 350px;
+      width: 350px;
+      flex-shrink: 0;
+      scroll-snap-align: start;
       background-color: #0c0d0f78;
       border: 1px solid #F0B355;
       color: var(--color-claro);
       font-family: var(--font-body);
       height: 470px;
-      justify-content: center;
       padding: 2rem;
       position: relative;
-      width: 350px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
+    /* CORRECCIÓN DE IMAGEN DE ACTOR: Cuadrada y centrada en el rostro */
     img.actores {
       border-radius: 8px;
       border: 1px solid #F0B355;
       display: block;
-      height: 250px;
-      margin: 0 auto 1rem auto;
+      width: 100%;
+      max-width: 220px;
+      height: 220px;
+      margin: 0 auto 1.5rem auto;
+      object-fit: cover;
+      object-position: center 20%;
     }
   }
 }
 
-.btn-carrusel {
-  flex-shrink: 0;
-  width: 60px;
-  height: 60px;
+/* Botones de navegación */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #2c3e50;
+  color: white;
+  border: 2px solid #F0B355;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  background: transparent;
-  border: 2px solid rgb(182, 131, 12);
-  font-size: 2rem;
   cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
   transition: 0.3s ease;
-  align-self: center;
-  background-color: var(--color-card);
-  color: var(--white-color);
 }
 
-.btn-carrusel:hover {
-  background-color: var(--color-two);
-  box-shadow: 0 0 15px rgba(188, 4, 4, 0.3);
-  transform: scale(1.08);
-  background-color: #f0b25566;
-  border-color: #F0B355;
-
+.nav-btn:hover {
+  background: var(--color-two);
+  color: var(--color-three);
+  box-shadow: 0 0 15px rgba(240, 179, 85, 0.5);
+  transform: translateY(-50%) scale(1.08);
 }
 
+.prev-btn { left: 0; }
+.next-btn { right: 0; }
+
+/* Secciones finales */
 section#ubicacion {
   align-items: center;
   background: url(../images/fondo4.png) no-repeat center top /cover;
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  height: 950px;
+  min-height: 950px;
   justify-content: center;
+  padding: 3rem 1rem;
 
   h2 {
     font-size: 3.6rem;
@@ -338,9 +379,7 @@ section#ubicacion {
     text-transform: uppercase;
   }
 
-  img.mapa {
-    width: 800px;
-  }
+  img.mapa { width: 800px; max-width: 100%; }
 }
 
 section#final {
@@ -349,46 +388,418 @@ section#final {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  height: 950px;
+  min-height: 950px;
   justify-content: center;
+  padding: 3rem 1rem;
 
-  img.creditos {
-    width: 500px;
+  img.creditos { width: 500px; max-width: 100%; }
+  img.redes { width: 300px; max-width: 100%; }
+}
+
+/* ==========================================
+   RESPONSIVE — TABLETS Y MÓVILES
+   ========================================== */
+
+/* ---------- TABLETS (≤ 1024px) ---------- */
+@media (max-width: 1024px) {
+  body main header#navbar {
+    height: 90px;
+    padding-inline: 1rem;
   }
 
-  img.redes {
+  body main header#navbar img.logo {
+    height: 70px;
+  }
+
+  body main header#navbar nav.options {
+    gap: 1.8rem;
+  }
+
+  body main header#navbar nav.options a:is(:link, :visited) {
+    font-size: 1.1rem;
+  }
+
+  body main section#cineplaza {
+    min-height: 600px;
+    padding: 4rem 1.5rem;
+    margin-top: 90px;
+    text-align: center;
+  }
+
+  body main section#cineplaza h2 {
+    font-size: 2.8rem;
+  }
+
+  body main section#cineplaza img.logo {
+    height: 220px;
+  }
+
+  body main section#cartelera {
+    min-height: 800px;
+    padding: 4rem 1rem;
+  }
+
+  body main section#cartelera h2 {
+    font-size: 2.8rem;
+  }
+
+  body main section#cartelera div.filters {
+    gap: 1.5rem;
+  }
+
+  body main section#cartelera div.filters button {
+    width: 260px;
+    font-size: 1.4rem;
+    height: 42px;
+  }
+
+  .carousel-container {
+    padding: 0 55px;
+    width: 100%;
+  }
+
+  div.cards figure.card {
+    flex: 0 0 300px;
     width: 300px;
+    height: 540px;
+    padding: 1.5rem;
   }
 
-  body {
-    background-color: teal;
+  /* Ajuste Imagen Película Tablet */
+  div.cards figure.card img.peliculas {
+    height: 260px;
+    max-width: 200px;
+  }
+
+  section#actores {
+    min-height: 800px;
+    padding: 3rem 1rem;
+  }
+
+  section#actores h2 {
+    font-size: 2.8rem;
+  }
+
+  section#actores div.actorcards figure.actors {
+    flex: 0 0 300px;
+    width: 300px;
+    height: 450px;
+    padding: 1.5rem;
+  }
+
+  /* Ajuste Imagen Actor Tablet */
+  section#actores div.actorcards img.actores {
+    height: 200px;
+    max-width: 200px;
+  }
+
+  section#ubicacion {
+    min-height: 700px;
+    padding: 4rem 1rem;
+  }
+
+  section#ubicacion h2 {
+    font-size: 2.8rem;
+  }
+
+  section#ubicacion img.mapa {
+    width: 90%;
+    max-width: 650px;
+  }
+
+  section#final {
+    min-height: 600px;
+    padding: 4rem 1rem;
+    text-align: center;
+  }
+
+  section#final img.creditos {
+    width: 70%;
+    max-width: 400px;
+  }
+
+  section#final img.redes {
+    width: 50%;
+    max-width: 250px;
   }
 }
 
+/* ---------- MÓVILES GRANDES (≤ 768px) ---------- */
+@media (max-width: 768px) {
+  body main header#navbar {
+    height: 80px;
+  }
+
+  body main header#navbar img.logo {
+    height: 60px;
+  }
+
+  body main section#cineplaza {
+    margin-top: 80px;
+    min-height: 500px;
+    padding: 3rem 1rem;
+    gap: 1.2rem;
+  }
+
+  body main section#cineplaza h2 {
+    font-size: 2.2rem;
+  }
+
+  body main section#cineplaza img.logo {
+    height: 170px;
+  }
+
+  body main section#cartelera h2 {
+    font-size: 2.2rem;
+  }
+
+  body main section#cartelera div.filters button {
+    width: 220px;
+    font-size: 1.2rem;
+    height: 40px;
+  }
+
+  .carousel-container {
+    padding: 0 45px;
+  }
+
+  div.cards figure.card {
+    flex: 0 0 260px;
+    width: 260px;
+    height: 510px;
+    padding: 1.2rem;
+  }
+
+  /* Ajuste Imagen Película Móvil Grande */
+  div.cards figure.card img.peliculas {
+    height: 230px;
+    max-width: 180px;
+  }
+
+  div.cards figure.card button.ComprarEntrada {
+    width: 170px;
+    height: 38px;
+    font-size: 0.95rem;
+  }
+
+  section#actores h2 {
+    font-size: 2.2rem;
+  }
+
+  section#actores div.actorcards figure.actors {
+    flex: 0 0 260px;
+    width: 260px;
+    height: 420px;
+    padding: 1.2rem;
+  }
+
+  /* Ajuste Imagen Actor Móvil Grande */
+  section#actores div.actorcards img.actores {
+    height: 180px;
+    max-width: 180px;
+  }
+
+  section#ubicacion h2 {
+    font-size: 2.2rem;
+  }
+
+  section#ubicacion img.mapa {
+    width: 100%;
+  }
+
+  .nav-btn {
+    width: 42px;
+    height: 42px;
+    font-size: 16px;
+  }
+}
+
+/* ---------- MÓVILES (≤ 560px) ---------- */
 @media (max-width: 560px) {
-  body {
-    main {
-      header#navbar {
-        nav.options {
-          background-color: #000d;
-          position:absolute;
-          width: 100%;
-          align-items: center;
-          justify-content: start;
-          flex-direction: column;
-          padding-top: 2rem;
-          height: 100dvh;
-          top: 110px;
-          left: -130dvw;
-          transition: all 1s 0.5s ease;
-          &.active{
-            left: 0px;
-          }
-        }
-        button#mburger {
-          display: block;
-        }
-      }
-    }
+  body main header#navbar nav.options {
+    background-color: #000d;
+    position: absolute;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding-top: 2rem;
+    gap: 2rem;
+    height: 100dvh;
+    top: 80px;
+    left: -100dvw;
+    transition: left 0.5s ease;
+  }
+
+  body main header#navbar nav.options.active {
+    left: 0;
+  }
+
+  body main header#navbar button#mburger {
+    display: block;
+  }
+
+  body main section#cineplaza {
+    min-height: 450px;
+    padding: 2.5rem 1rem;
+  }
+
+  body main section#cineplaza h2 {
+    font-size: 1.8rem;
+  }
+
+  body main section#cineplaza img.logo {
+    height: 130px;
+  }
+
+  body main section#cartelera {
+    padding: 2.5rem 0.5rem;
+    min-height: auto;
+  }
+
+  body main section#cartelera h2 {
+    font-size: 1.8rem;
+  }
+
+  body main section#cartelera div.filters {
+    gap: 0.8rem;
+    padding: 0 0.5rem;
+  }
+
+  body main section#cartelera div.filters button {
+    width: 100%;
+    max-width: 320px;
+    font-size: 1.1rem;
+    height: 38px;
+  }
+
+  .carousel-container {
+    padding: 0 35px;
+  }
+
+  div.cards figure.card {
+    flex: 0 0 240px;
+    width: 240px;
+    height: 490px;
+    padding: 1rem;
+  }
+
+  div.cards figure.card h3 {
+    font-size: 1.1rem;
+    text-align: center;
+  }
+
+  div.cards figure.card h4,
+  div.cards figure.card h5 {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  /* Ajuste Imagen Película Móvil */
+  div.cards figure.card img.peliculas {
+    height: 210px;
+    max-width: 160px;
+  }
+
+  div.cards figure.card button.ComprarEntrada {
+    width: 150px;
+    height: 36px;
+    font-size: 0.85rem;
+  }
+
+  section#actores {
+    padding: 2.5rem 0.5rem;
+    min-height: auto;
+  }
+
+  section#actores h2 {
+    font-size: 1.8rem;
+    margin-top: 1rem;
+  }
+
+  section#actores div.actorcards figure.actors {
+    flex: 0 0 240px;
+    width: 240px;
+    height: 400px;
+    padding: 1rem;
+  }
+
+  /* Ajuste Imagen Actor Móvil */
+  section#actores div.actorcards img.actores {
+    height: 160px;
+    max-width: 160px;
+  }
+
+  section#actores div.actorcards figure.actors h3,
+  section#actores div.actorcards figure.actors h4 {
+    text-align: center;
+    font-size: 0.9rem;
+  }
+
+  section#ubicacion {
+    padding: 2.5rem 1rem;
+    min-height: auto;
+  }
+
+  section#ubicacion h2 {
+    font-size: 1.8rem;
+  }
+
+  section#final {
+    padding: 2.5rem 1rem;
+    min-height: auto;
+  }
+
+  section#final img.creditos {
+    width: 80%;
+  }
+
+  section#final img.redes {
+    width: 60%;
+  }
+
+  section#final p {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  .nav-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+
+  .prev-btn { left: -2px; }
+  .next-btn { right: -2px; }
+}
+
+/* ---------- MÓVILES MUY PEQUEÑOS (≤ 380px) ---------- */
+@media (max-width: 380px) {
+  div.cards figure.card {
+    flex: 0 0 220px;
+    width: 220px;
+    height: 470px;
+  }
+
+  /* Ajuste Imagen Película Móvil Pequeño */
+  div.cards figure.card img.peliculas {
+    height: 190px;
+    max-width: 140px;
+  }
+
+  section#actores div.actorcards figure.actors {
+    flex: 0 0 220px;
+    width: 220px;
+    height: 380px;
+  }
+
+  /* Ajuste Imagen Actor Móvil Pequeño */
+  section#actores div.actorcards img.actores {
+    height: 140px;
+    max-width: 140px;
+  }
+
+  .carousel-container {
+    padding: 0 30px;
   }
 }
